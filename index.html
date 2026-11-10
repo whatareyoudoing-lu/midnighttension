@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Midnight Tension · 情侣深夜游戏</title>
+<style>
+:root{
+  --pink:#f6a8c8; --deep:#5a3045; --cream:#fff8fb; --rose:#e86f9f;
+  --shadow:0 18px 50px rgba(90,48,69,.16);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:linear-gradient(145deg,#ffd7e6,#f7a7c7 48%,#f2c2d5);
+  color:var(--deep);min-height:100vh;
+}
+.app{max-width:760px;margin:auto;padding:28px 18px 50px}
+.hero{text-align:center;padding:18px 8px 24px}
+.badge{display:inline-block;background:#ffffffaa;padding:7px 14px;border-radius:999px;font-size:12px;letter-spacing:1px}
+h1{font-size:38px;margin:14px 0 4px;letter-spacing:-1px}
+.subtitle{margin:0;opacity:.75}
+.card{
+  background:#fff; border-radius:30px;box-shadow:var(--shadow);padding:26px;
+}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
+button{
+  border:0;cursor:pointer;font:inherit;color:var(--deep);transition:.18s;
+}
+.tab{padding:13px;border-radius:16px;background:#f8e7ee;font-weight:700}
+.tab.active{background:var(--deep);color:#fff}
+.mode-note{text-align:center;font-size:13px;opacity:.7;margin-bottom:18px}
+.prompt{
+  min-height:180px;border-radius:24px;background:linear-gradient(145deg,#fff8fb,#ffe9f2);
+  display:flex;align-items:center;justify-content:center;text-align:center;padding:28px;
+  font-size:22px;line-height:1.6;font-weight:700;
+}
+.meta{text-align:center;margin:14px 0 20px;font-size:12px;opacity:.65}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.primary{background:var(--rose);color:#fff;padding:15px;border-radius:17px;font-weight:800}
+.secondary{background:#f5e7ed;padding:15px;border-radius:17px;font-weight:700}
+button:active{transform:scale(.97)}
+.game{margin-top:20px;border-top:1px dashed #d9aabc;padding-top:20px}
+.game h2{font-size:18px;margin:0 0 12px}
+.game-buttons{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.dice,.rps{padding:13px;border-radius:15px;background:#fff0f5}
+#result{text-align:center;min-height:24px;margin-top:13px;font-weight:700}
+.small{font-size:12px;opacity:.6;text-align:center;margin-top:18px}
+@media(max-width:520px){h1{font-size:31px}.card{padding:18px}.prompt{font-size:19px;min-height:210px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="hero">
+    <span class="badge">18+ · FOR COUPLES</span>
+    <h1>Midnight Tension 💓</h1>
+    <p class="subtitle">情侣深夜 Truth or Dare · 今晚，谁先心跳加速？</p>
+  </header>
+
+  <main class="card">
+    <div class="tabs">
+      <button id="truthTab" class="tab active" onclick="setMode('truth')">💬 真心话</button>
+      <button id="dareTab" class="tab" onclick="setMode('dare')">😈 大冒险</button>
+    </div>
+
+    <div class="mode-note" id="modeNote">挖出那些平时不好意思说出口的欲望、幻想和偏好。</div>
+
+    <div class="prompt" id="prompt">准备好了吗？<br>摇骰子开始 👀</div>
+    <div class="meta" id="meta">第 0 题 · Level 1</div>
+
+    <div class="actions">
+      <button class="primary" onclick="roll()">🎲 摇骰子</button>
+      <button class="secondary" onclick="nextRandom()">✨ 随机抽题</button>
+    </div>
+
+    <section class="game">
+      <h2>或者——用剪刀石头布决定谁来抽？ ✂️🪨📄</h2>
+      <div class="game-buttons">
+        <button class="rps" onclick="rps('✌️','剪刀')">✌️ 剪刀</button>
+        <button class="rps" onclick="rps('✊','石头')">✊ 石头</button>
+        <button class="rps" onclick="rps('🖐️','布')">🖐️ 布</button>
+        <button class="dice" onclick="resetGame()">↻ 重新开始</button>
+      </div>
+      <div id="result"></div>
+    </section>
+
+    <p class="small">任何一方都可以说 Skip。真正的刺激来自双方都舒服的边界里。🫶</p>
+  </main>
+</div>
+
+<script>
+const truths = [
+"什么样的氛围最容易让你进入状态？是灯光、音乐、香味、眼神、距离感，还是语言？",
+"我做过什么小动作，会让你特别有感觉？有没有一些我自己都没意识到的瞬间？",
+"你更容易被视觉、声音、触碰还是语言撩到？为什么？",
+"有没有一种亲密接触，是你特别喜欢、但平时不太会主动要求的？",
+"你喜欢主动一点，还是享受对方主动？更喜欢掌控、被掌控，还是交换？",
+"你喜欢慢慢升温，还是突然变得很有火花？什么节奏最适合你？",
+"什么最能让你觉得自己被渴望：眼神、拥抱、亲吻、贴近、语言，还是主动靠近？",
+"如果把我们的亲密模式调高一点，你最想增加哪一种感觉？",
+"从舒服、亲密、刺激、视觉感来看，你最喜欢哪一种亲密姿势？为什么？",
+"你更喜欢面对面、侧身贴近，还是更有距离感的姿势？哪一种最有连接感？",
+"有没有一种姿势或方式，是你一直很好奇、但还没有真正尝试过的？",
+"亲密时你更喜欢一直保持眼神交流，还是偶尔避开眼神、享受一点羞耻感？",
+"有没有一个关于我的幻想，是你想过很多次但从来没告诉我的？",
+"如果今晚完全不用考虑现实、时间和地点，你最想和我拥有怎样的一次约会或亲密体验？",
+"有没有幻想过我们在一个完全不同的身份或场景里认识？",
+"如果让你设计一晚属于我们的成人约会，你会从哪里开始安排？",
+"什么类型的话最容易让你心跳加速：直接表达欲望、夸奖、说想念，还是带一点挑逗感？",
+"你喜欢听我主动告诉你“我想要你”，还是更喜欢让我通过行动暗示？",
+"有没有一句话，如果我在合适的时候对你说，你会立刻觉得特别有感觉？",
+"如果你可以诚实地告诉我一个“你一直想让我知道、但又有点不好意思说”的欲望，你会告诉我什么？"
+];
+
+const dares = [
+"盯着对方的眼睛30秒，不许笑也不许躲。",
+"靠近对方耳边，说一句你觉得最性感的夸奖。",
+"告诉对方：“我第一次觉得你很有吸引力的瞬间是……”",
+"让对方随机选一张你的照片，并解释为什么这张照片让你觉得自己有魅力。",
+"保持很近的距离，对方问你一个问题，你必须看着TA的眼睛回答。",
+"让对方选择一个你身上的位置，只能用语言描述为什么喜欢它。",
+"用一句话告诉对方：如果现在只能亲吻一个地方，你会选哪里。",
+"靠得很近，但两个人都不能主动碰对方1分钟。",
+"轮流说三个“我很喜欢你这样做”的瞬间。",
+"让对方用一句话描述：TA觉得你什么时候最有魅力。",
+"闭上眼睛，让对方靠近你，然后猜TA什么时候离你最近。",
+"让对方选择一种你们平时很少尝试的浪漫互动，并一起完成。",
+"对着对方耳边说一句：“如果今晚没有任何限制，我最想……”——可以自己决定说到哪里。",
+"轮流用三个词描述你眼里的对方，不可以使用“漂亮、帅、性感”。",
+"让对方设计下一次约会的“成人版主题”，你只能回答：yes / no / maybe。",
+"给对方一个10秒决定：现在你最想让我做的一件浪漫的事是什么？",
+"两个人面对面坐着，轮流说一句自己从来没有主动说出口的欲望。",
+"让对方从“甜、坏、霸道、温柔、神秘”中选一个角色，然后用这个风格和你聊天3分钟。",
+"给对方一句只允许今晚使用的昵称，并解释为什么选它。",
+"Final Dare：看着对方说：“如果你真的想知道我最想要什么，就问我。”然后由对方决定问什么。"
+];
+
+let mode='truth', count=0, last=-1;
+const promptEl=document.getElementById('prompt');
+const metaEl=document.getElementById('meta');
+const resultEl=document.getElementById('result');
+
+function setMode(m){
+  mode=m;
+  document.getElementById('truthTab').classList.toggle('active',m==='truth');
+  document.getElementById('dareTab').classList.toggle('active',m==='dare');
+  document.getElementById('modeNote').textContent=m==='truth'
+    ? '挖出那些平时不好意思说出口的欲望、幻想和偏好。'
+    : '别只说——用行动制造一点心跳。😈';
+  promptEl.innerHTML='准备好了吗？<br>摇骰子开始 👀';
+  metaEl.textContent='第 0 题 · Level 1';
+}
+
+function nextRandom(){
+  const arr=mode==='truth'?truths:dares;
+  let i=Math.floor(Math.random()*arr.length);
+  if(arr.length>1 && i===last) i=(i+1)%arr.length;
+  last=i; count++;
+  promptEl.textContent=arr[i];
+  const level=Math.min(4,Math.floor(i/5)+1);
+  metaEl.textContent=`第 ${count} 题 · Level ${level}`;
+  resultEl.textContent='';
+}
+
+function roll(){
+  const n=Math.floor(Math.random()*6)+1;
+  resultEl.textContent=`🎲 你摇到了 ${n}！`;
+  setTimeout(nextRandom,450);
+}
+
+function rps(icon,name){
+  const choices=[['✌️','剪刀'],['✊','石头'],['🖐️','布']];
+  const bot=choices[Math.floor(Math.random()*3)];
+  let outcome='平手';
+  if((name==='剪刀'&&bot[1]==='布')||(name==='石头'&&bot[1]==='剪刀')||(name==='布'&&bot[1]==='石头')) outcome='你赢了！你来抽 😈';
+  else if(name!==bot[1]) outcome='TA赢了！TA来抽 👀';
+  resultEl.textContent=`你 ${icon}  vs  系统 ${bot[0]} · ${outcome}`;
+  if(outcome.includes('你赢')) setTimeout(nextRandom,900);
+}
+
+function resetGame(){
+  count=0;last=-1;resultEl.textContent='';
+  promptEl.innerHTML='准备好了吗？<br>摇骰子开始 👀';
+  metaEl.textContent='第 0 题 · Level 1';
+}
+</script>
+</body>
+</html>
