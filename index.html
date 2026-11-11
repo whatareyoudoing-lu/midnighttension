@@ -1,188 +1,50 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Midnight Tension · 情侣深夜游戏</title>
-<style>
-:root{
-  --pink:#f6a8c8; --deep:#5a3045; --cream:#fff8fb; --rose:#e86f9f;
-  --shadow:0 18px 50px rgba(90,48,69,.16);
-}
-*{box-sizing:border-box}
-body{
-  margin:0;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
-  background:linear-gradient(145deg,#ffd7e6,#f7a7c7 48%,#f2c2d5);
-  color:var(--deep);min-height:100vh;
-}
-.app{max-width:760px;margin:auto;padding:28px 18px 50px}
-.hero{text-align:center;padding:18px 8px 24px}
-.badge{display:inline-block;background:#ffffffaa;padding:7px 14px;border-radius:999px;font-size:12px;letter-spacing:1px}
-h1{font-size:38px;margin:14px 0 4px;letter-spacing:-1px}
-.subtitle{margin:0;opacity:.75}
-.card{
-  background:#fff; border-radius:30px;box-shadow:var(--shadow);padding:26px;
-}
-.tabs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
-button{
-  border:0;cursor:pointer;font:inherit;color:var(--deep);transition:.18s;
-}
-.tab{padding:13px;border-radius:16px;background:#f8e7ee;font-weight:700}
-.tab.active{background:var(--deep);color:#fff}
-.mode-note{text-align:center;font-size:13px;opacity:.7;margin-bottom:18px}
-.prompt{
-  min-height:180px;border-radius:24px;background:linear-gradient(145deg,#fff8fb,#ffe9f2);
-  display:flex;align-items:center;justify-content:center;text-align:center;padding:28px;
-  font-size:22px;line-height:1.6;font-weight:700;
-}
-.meta{text-align:center;margin:14px 0 20px;font-size:12px;opacity:.65}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.primary{background:var(--rose);color:#fff;padding:15px;border-radius:17px;font-weight:800}
-.secondary{background:#f5e7ed;padding:15px;border-radius:17px;font-weight:700}
-button:active{transform:scale(.97)}
-.game{margin-top:20px;border-top:1px dashed #d9aabc;padding-top:20px}
-.game h2{font-size:18px;margin:0 0 12px}
-.game-buttons{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.dice,.rps{padding:13px;border-radius:15px;background:#fff0f5}
-#result{text-align:center;min-height:24px;margin-top:13px;font-weight:700}
-.small{font-size:12px;opacity:.6;text-align:center;margin-top:18px}
-@media(max-width:520px){h1{font-size:31px}.card{padding:18px}.prompt{font-size:19px;min-height:210px}}
-</style>
-</head>
-<body>
-<div class="app">
-  <header class="hero">
-    <span class="badge">18+ · FOR COUPLES</span>
-    <h1>Midnight Tension 💓</h1>
-    <p class="subtitle">情侣深夜 Truth or Dare · 今晚，谁先心跳加速？</p>
-  </header>
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Midnight Tension 💓</title><style>
+:root{--ink:#62384e;--pink:#dc6395;--pale:#fff0f6}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top left,#ffdeeb,#f3a2c5 65%,#e988b1);font-family:system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);min-height:100vh}.wrap{max-width:830px;margin:auto;padding:24px 14px 55px}header{position:relative;text-align:center;padding:20px 0 24px}h1{font-size:clamp(29px,6vw,44px);margin:12px 0 7px}header p{margin:0;opacity:.75}.language{position:absolute;right:0;top:0;background:white;border:1px solid #eab5cc;border-radius:99px;padding:9px 12px;font-weight:700;cursor:pointer}.panel{background:#fff;border-radius:26px;padding:22px;box-shadow:0 18px 55px #7b2c5128}.nav,.tabs,.two{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.nav{margin-bottom:18px}.nav button,.tabs button,.secondary,.choice{border:0;background:#f7e6ee;color:var(--ink);border-radius:14px;padding:13px;font:inherit;font-weight:700;cursor:pointer}.on,.primary{background:var(--ink)!important;color:white!important}.primary{border:0;border-radius:14px;padding:13px;font:inherit;font-weight:700;cursor:pointer}.hint,.meta,.sub{font-size:13px;opacity:.75}.hint,.meta{text-align:center;margin:12px 0}.question{background:linear-gradient(140deg,#fff7fa,#ffe5ef);border-radius:22px;min-height:170px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:25px;text-align:center;gap:12px}.zh{font-size:20px;font-weight:750;line-height:1.65}.en{font-size:15px;font-weight:500;line-height:1.55;color:#8c5a71}.hide-en .en,.hide-en .en-inline{display:none!important}section{border-top:1px dashed #e6b8cc;margin-top:23px;padding-top:20px}h2{font-size:20px;margin:0 0 8px}.die-wrap{display:flex;align-items:center;justify-content:center;gap:28px;margin:18px 0}.die{width:100px;height:100px;background:white;border:3px solid var(--ink);border-radius:20px;box-shadow:0 7px 0 #eed3df;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);padding:13px;gap:5px;cursor:pointer}.pip{background:var(--ink);border-radius:50%;width:13px;height:13px;align-self:center;justify-self:center}.pip.empty{visibility:hidden}.rolling{animation:shake .15s infinite alternate}@keyframes shake{to{transform:rotate(9deg) scale(1.04)}}.die-number{font-size:36px;font-weight:800}.die-label{font-size:13px;opacity:.75}.status{background:#fff0f6;border-radius:12px;padding:12px;text-align:center;margin:12px 0}.choices{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.footer{font-size:12px;opacity:.7;text-align:center;margin-top:24px}.hidden{display:none!important}.library-tools{display:flex;flex-wrap:wrap;gap:9px;margin:14px 0}.library-tools button{flex:1}.entry{border:1px solid #eed0dd;border-radius:17px;padding:14px;margin:12px 0}.entry-head{display:flex;align-items:center;justify-content:space-between;gap:8px;font-weight:750}.entry .zh{font-size:15px}.entry .en{font-size:13px}.entry p{margin:8px 0}.editor{display:grid;gap:9px;margin-top:12px}.editor label{font-size:12px;font-weight:700}.editor textarea{width:100%;min-height:70px;resize:vertical;border:1px solid #e5b8cb;border-radius:10px;padding:10px;font:inherit;color:var(--ink)}.mini{border:0;border-radius:9px;padding:8px 11px;background:#f4dce7;color:var(--ink);cursor:pointer}.count{font-size:12px;opacity:.65}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#62384e;color:white;padding:11px 20px;border-radius:50px;display:none;z-index:5;box-shadow:0 6px 24px #0002}button:disabled{opacity:.4;cursor:not-allowed}@media(max-width:520px){.panel{padding:16px}.language{font-size:12px;padding:7px}.zh{font-size:18px}.library-tools{display:grid;grid-template-columns:1fr 1fr}}
 
-  <main class="card">
-    <div class="tabs">
-      <button id="truthTab" class="tab active" onclick="setMode('truth')">💬 真心话</button>
-      <button id="dareTab" class="tab" onclick="setMode('dare')">😈 大冒险</button>
-    </div>
+.players-header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.players-header h2{margin:0}.players-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:11px;margin-top:14px}.player-card{background:#fff1f7;border:2px solid transparent;border-radius:17px;padding:13px}.player-card.active{border-color:#b64b7c;background:#ffe5f0}.player-top{display:flex;align-items:center;gap:8px}.player-name{width:100%;min-width:0;border:1px solid #e8bfd0;background:white;border-radius:9px;padding:9px;font:inherit;color:var(--ink);font-weight:700}.scoreline{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:12px}.score{font-size:29px;font-weight:800;font-variant-numeric:tabular-nums}.score-actions{display:flex;gap:6px}.score-actions button{border:0;border-radius:9px;background:white;padding:7px 11px;font-weight:800;color:var(--ink);cursor:pointer}.player-select{border:0;background:#e7b2ca;border-radius:9px;padding:7px 9px;color:var(--ink);cursor:pointer;font-weight:700}.player-card.active .player-select{background:var(--ink);color:white}.player-controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}.player-controls button{flex:1}.turn-note{font-size:13px;margin-top:12px;text-align:center;font-weight:700}.player-card .remove{background:transparent;border:0;cursor:pointer;color:#9a496d;font-size:19px}.complete-row{display:flex;gap:10px;justify-content:center;margin-top:12px;flex-wrap:wrap}
+</style></head><body><div class="wrap" id="app"><header><button id="language" class="language" onclick="toggleEnglish()">🌐 隐藏英文</button><div>18+ · COUPLES ONLY</div><h1>Midnight Tension 💓</h1><p>情侣深夜真心话大冒险 <span class="en-inline">· Truth or Dare</span></p></header><main class="panel"><nav class="nav"><button id="navGame" class="on" onclick="page('game')">🎮 游戏 <span class="en-inline">Game</span></button><button id="navLibrary" onclick="page('library')">📚 题库 <span class="en-inline">Library</span></button></nav>
+<div id="game"><section class="players-section" style="border-top:0;margin-top:0;padding-top:0"><div class="players-header"><h2>👥 玩家与积分 <span class="en-inline">Players & Scores</span></h2><button class="secondary" onclick="addPlayer()">＋ 添加玩家 <span class="en-inline">Add Player</span></button></div><p class="sub">点击玩家卡片上的「轮到我」选择当前挑战者；完成挑战可加分。<span class="en-inline"> Select whose turn it is, then award points after a challenge.</span></p><div id="playersGrid" class="players-grid"></div><div id="turnNote" class="turn-note"></div><div class="player-controls"><button class="secondary" onclick="resetScores()">↻ 清零积分 <span class="en-inline">Reset Scores</span></button></div></section><div class="tabs"><button id="t" class="on" onclick="setMode('truth')">💬 真心话 <span class="en-inline">Truth</span></button><button id="d" onclick="setMode('dare')">😈 大冒险 <span class="en-inline">Dare</span></button></div><div class="hint" id="hint"></div><div class="question" id="question"><div class="zh">准备好了吗？抽一张牌开始 👀</div><div class="en">Ready? Draw a card to begin.</div></div><div class="meta" id="meta">等待抽题 · Ready to play</div><div class="two"><button class="primary" onclick="draw()">✨ 随机抽题 <span class="en-inline">Draw</span></button><button class="secondary" onclick="draw()">↪ 跳过 / 换题 <span class="en-inline">Skip</span></button></div>
+<div class="complete-row"><button class="primary" onclick="completeChallenge()">⭐ 完成挑战 +1 分 <span class="en-inline">Completed +1 Point</span></button></div><section><h2>🎲 掷骰子 <span class="en-inline">Roll the Dice</span></h2><p class="sub">奇数抽真心话，偶数抽大冒险。<span class="en-inline"> Odd = Truth, Even = Dare.</span></p><div class="die-wrap"><button id="die" class="die" onclick="roll()" aria-label="掷骰子"></button><div><div class="die-number" id="dieNum">—</div><div class="die-label" id="dieLabel">等待掷骰 / Ready</div></div></div><button class="primary" style="width:100%" onclick="roll()">🎲 掷骰并抽题 <span class="en-inline">Roll & Draw</span></button></section>
+<section><h2>✊ 双人猜拳 <span class="en-inline">Rock Paper Scissors</span></h2><p class="sub">A、B轮流秘密出拳，输家抽题。<span class="en-inline"> Players take turns choosing secretly; loser draws.</span></p><div class="status" id="rpsStatus"></div><div class="choices"><button class="choice" onclick="pick(0)">✌️ 剪刀 <span class="en-inline">Scissors</span></button><button class="choice" onclick="pick(1)">✊ 石头 <span class="en-inline">Rock</span></button><button class="choice" onclick="pick(2)">🖐️ 布 <span class="en-inline">Paper</span></button></div><div class="status" id="rpsResult"></div><div class="two"><button class="secondary" onclick="resetRps()">↻ 重来 <span class="en-inline">Reset</span></button><button class="primary" id="revealBtn" onclick="reveal()" disabled>👀 揭晓 <span class="en-inline">Reveal</span></button></div></section><div class="footer">双方自愿，随时可以说 No / Skip / Stop。<span class="en-inline"> Consent always comes first.</span> 🫶</div></div>
+<div id="library" class="hidden"><h2>📚 题库管理 <span class="en-inline">Question Library</span></h2><p class="sub">浏览、编辑、添加、删除题目；修改后点击「一键更新到游戏」。<span class="en-inline"> View, edit, add or delete questions. Apply changes to the game in one tap.</span></p><div class="tabs"><button id="lt" class="on" onclick="libraryMode('truth')">💬 真心话 <span class="en-inline">Truth</span></button><button id="ld" onclick="libraryMode('dare')">😈 大冒险 <span class="en-inline">Dare</span></button></div><div class="library-tools"><button class="secondary" onclick="addEntry()">＋ 添加题目 <span class="en-inline">Add</span></button><button class="primary" onclick="applyLibrary()">✓ 一键更新到游戏 <span class="en-inline">Apply</span></button><button class="secondary" onclick="exportLibrary()">↓ 导出备份 <span class="en-inline">Export</span></button><button class="secondary" onclick="document.getElementById('importFile').click()">↑ 导入备份 <span class="en-inline">Import</span></button></div><input type="file" id="importFile" accept="application/json,.json" class="hidden" onchange="importLibrary(event)"><div class="count" id="libraryCount"></div><div id="entries"></div><button class="primary" style="width:100%;margin-top:14px" onclick="applyLibrary()">✓ 一键更新到游戏 <span class="en-inline">Apply Changes</span></button><div class="footer">编辑内容保存在当前浏览器。<span class="en-inline"> Edits are saved in this browser.</span></div></div></main></div><div class="toast" id="toast"></div><script>
+const defaults={"truth": [{"zh": "什么样的氛围最容易让你进入状态？是灯光、音乐、香味、眼神、距离感，还是对方说话的方式？", "en": "What atmosphere puts you in the mood—lighting, music, scent, eye contact, closeness, or the way I speak?"}, {"zh": "我做过什么小动作，会让你特别有感觉？有没有一些我自己可能都没意识到、但你其实很喜欢的瞬间？", "en": "What small gesture of mine turns you on, perhaps without me even realizing?"}, {"zh": "你更容易被“视觉”“声音”“触碰”还是“语言”撩到？为什么？", "en": "Are you most drawn to visuals, sounds, touch, or words? Why?"}, {"zh": "有没有一种亲密接触，是你特别喜欢、但平时不太会主动要求的？", "en": "Is there a kind of intimacy you love but rarely ask for?"}, {"zh": "你喜欢主动一点，还是享受对方主动？如果一定要选，你更喜欢掌控、被掌控，还是两个人不断交换？", "en": "Do you prefer taking the lead, letting me lead, or switching roles?"}, {"zh": "你喜欢慢慢升温，还是突然变得很有火花？什么样的节奏最符合你的感觉？", "en": "Do you prefer a slow build-up or a sudden spark? What pace feels right?"}, {"zh": "你喜欢哪种亲密方式最能让你觉得“被渴望”？比如眼神、拥抱、亲吻、贴近、语言或者主动靠近。", "en": "What makes you feel most desired—eye contact, hugs, kisses, closeness, words, or initiative?"}, {"zh": "如果给我们的亲密模式打一个“刺激程度”，你现在最想往上调一点，还是保持现在这样？为什么？", "en": "Would you turn up the intensity of our intimacy, or keep it as it is? Why?"}, {"zh": "如果只从“舒服、亲密、刺激、视觉感”这几个角度考虑，你最喜欢哪一种亲密姿势？为什么？", "en": "Considering comfort, closeness, excitement, and visual appeal, which intimate position do you prefer, and why?"}, {"zh": "你更喜欢面对面、侧身贴近，还是更有距离感的姿势？哪一种会让你觉得最有连接感？", "en": "Do you prefer face-to-face, side-by-side, or a little more distance? Which feels most connecting?"}, {"zh": "有没有一种姿势或方式，是你一直很好奇、但还没有真正尝试过的？", "en": "Is there a position or approach you are curious about but have not tried?"}, {"zh": "你更喜欢亲密时一直保持眼神交流，还是偶尔避开眼神、享受那种羞耻感？", "en": "Do you prefer sustained eye contact during intimacy, or sometimes looking away with a little shyness?"}, {"zh": "有没有一个关于我的幻想，是你想过很多次但从来没告诉我的？", "en": "Have you imagined something about us many times but never told me?"}, {"zh": "如果今晚完全不用考虑现实、时间和地点，你最想和我拥有怎样的一次约会或亲密体验？", "en": "With no constraints of time or place, what kind of date or intimate experience would you choose for us?"}, {"zh": "你有没有幻想过我们在一个完全不同的身份/场景里认识？比如第一次见面、陌生人、旅行途中、酒店、派对之后……", "en": "Have you imagined us meeting as different people or in a different setting—on a trip, in a hotel, at a party?"}, {"zh": "如果让你设计一晚属于我们的“成人约会”，你会从哪里开始安排？", "en": "If you planned an adults-only date night for us, where would you begin?"}, {"zh": "什么类型的话最容易让你心跳加速？是直接表达欲望、夸奖身体、说想念，还是带一点命令感和挑逗感？", "en": "What kind of words make your heart race—expressing desire, compliments, longing, playful commands, or teasing?"}, {"zh": "你喜欢听我主动告诉你“我想要你”，还是更喜欢让我通过行动暗示？", "en": "Do you prefer hearing me say “I want you,” or having me show it through actions?"}, {"zh": "有没有一句话，如果我在合适的时候对你说，你会立刻觉得特别有感觉？", "en": "Is there a phrase that would instantly excite you if I said it at the right moment?"}, {"zh": "如果你可以诚实地告诉我一个“你一直想让我知道，但又有点不好意思说”的欲望，你会告诉我什么？", "en": "What desire have you always wanted me to know but felt shy about sharing?"}], "dare": [{"zh": "闭上眼睛，让对方慢慢靠近。当你觉得TA已经近到不能再近时，说“Stop”，然后睁眼看看距离。", "en": "Close your eyes as your partner approaches slowly. Say “Stop” when you think they are as close as possible, then open your eyes."}, {"zh": "面对面靠近到几乎可以亲吻的距离，保持20秒。谁先笑谁输。", "en": "Move close enough to almost kiss. Hold the moment for 20 seconds. First to laugh loses."}, {"zh": "闭上眼睛，让对方轻触你的手臂、肩膀或手背，猜猜TA碰了哪里。", "en": "Close your eyes. Let your partner gently touch your arm, shoulder, or hand, and guess where."}, {"zh": "对方靠近你的耳边，轻声说一句秘密。你要猜出TA说了什么。", "en": "Your partner whispers a secret close to your ear. Try to repeat what they said."}, {"zh": "靠近、牵手或拥抱30秒，但暂时不接吻。倒计时结束后，双方决定要不要亲吻。", "en": "Stay close, hold hands, or hug for 30 seconds without kissing. Afterward, decide together whether to kiss."}, {"zh": "两个人轮流说一句挑逗的赞美，谁先移开视线或笑出来，谁输。", "en": "Take turns offering a teasing compliment. The first to look away or laugh loses."}, {"zh": "闭眼后，让对方用手指、手背或柔软的布轻触你的手臂，猜出是哪一种。", "en": "Close your eyes while your partner brushes your arm with a fingertip, the back of their hand, or soft fabric. Guess which."}, {"zh": "面对面坐着，手心相对但不碰到。保持30秒，看看谁先忍不住靠近。", "en": "Sit facing each other with palms almost touching for 30 seconds. See who moves closer first."}, {"zh": "拥抱或慢慢靠近时，一方随时可以说“Freeze”，双方立即停住10秒。", "en": "While hugging or moving closer, either partner can say “Freeze.” Both pause for 10 seconds."}, {"zh": "闭上眼睛伸出一只手。对方选择握手、轻碰指尖或不碰，猜猜TA选择了什么。", "en": "Close your eyes and hold out a hand. Your partner chooses to hold it, brush fingertips, or not touch. Guess their choice."}, {"zh": "由一人担任30秒的“指挥者”，给出三个温柔指令，例如“看着我”“走近一步”“伸出手”。另一人可以拒绝任何一项。", "en": "One partner leads for 30 seconds with three gentle instructions, such as “Look at me,” “Take one step closer,” or “Offer your hand.” Any instruction may be declined."}, {"zh": "尝试“允许制”：一方提出三个亲密邀请，另一方只用 Yes / Maybe / No 回答，不需要解释。", "en": "Try a permission round: one partner makes three affectionate requests, the other answers Yes / Maybe / No without needing to explain."}, {"zh": "交换角色：一人扮演自信的引导者，另一人扮演害羞的回应者，用对话演绎一分钟，然后交换。", "en": "Switch roles: one plays a confident guide, the other a shy responder. Act out a one-minute dialogue, then swap."}, {"zh": "一方用坚定但温柔的语气说：“看着我，告诉我你想要什么。”另一方自由回答或选择跳过。", "en": "In a firm but gentle tone, say: “Look at me and tell me what you want.” Your partner can answer or skip."}, {"zh": "设定一个双方都接受的“安全词”，再演练一次：一人说安全词，另一人立刻停下并询问感受。", "en": "Agree on a safeword, then rehearse: one says it, the other immediately stops and checks in."}, {"zh": "由一方设计三个连续的非露骨指令，例如“闭眼—伸手—靠近”，另一方逐一确认后才执行。", "en": "One partner creates three non-explicit instructions, such as “Close your eyes—offer your hand—come closer.” Confirm each before doing it."}, {"zh": "玩“掌控节奏”：一方引导30秒慢舞，另一方跟随；任何一方都可以说“换我”，立即交换。", "en": "Play “Lead the pace”: one leads a 30-second slow dance while the other follows. Either can say “My turn” to switch."}, {"zh": "轮流说出一个让自己心动的支配／服从情境、一个明确的禁区，以及一个想先尝试的温和互动。", "en": "Take turns sharing one dominance/submission scenario you find intriguing, one firm limit, and one gentle interaction you might try."}, {"zh": "挑战“只能请求，不能命令”：用三句有吸引力的话邀请对方做一件亲密但舒适的事，等待TA明确同意。", "en": "Challenge: requests only, no commands. Use three appealing lines to invite one comfortable affectionate action, and wait for clear agreement."}, {"zh": "终极回合：一方提出一个带有主导感的浪漫场景，另一方决定“接受、修改或跳过”，然后交换角色。", "en": "Final round: one proposes a romantic scene with a playful power dynamic. The other chooses “Accept, adjust, or skip.” Then swap."}]};
+const $=id=>document.getElementById(id);
+const clone=o=>JSON.parse(JSON.stringify(o));
+const valid=o=>o&&['truth','dare'].every(k=>Array.isArray(o[k])&&o[k].every(x=>x&&typeof x.zh==='string'&&typeof x.en==='string'));
+function load(){try{const o=JSON.parse(localStorage.getItem('midnight-library-v3'));return valid(o)?o:clone(defaults)}catch{return clone(defaults)}}
+let data=load(),draft=clone(data),mode='truth',libMode='truth',round=0,seen={truth:new Set(),dare:new Set()},english=localStorage.getItem('midnight-en')!=='off',rolling=false,picks=[];
+function notify(msg){$('toast').textContent=msg;$('toast').style.display='block';setTimeout(()=>$('toast').style.display='none',2400)}
+function toggleEnglish(){english=!english;localStorage.setItem('midnight-en',english?'on':'off');updateEnglish()}
+function updateEnglish(){$('app').classList.toggle('hide-en',!english);$('language').textContent=english?'🌐 隐藏英文':'🌐 显示英文'}
+function page(name){$('game').classList.toggle('hidden',name!=='game');$('library').classList.toggle('hidden',name!=='library');$('navGame').classList.toggle('on',name==='game');$('navLibrary').classList.toggle('on',name==='library');if(name==='library')renderLibrary()}
+function setMode(m){mode=m;$('t').classList.toggle('on',m==='truth');$('d').classList.toggle('on',m==='dare');$('hint').textContent=m==='truth'?'欲望、幻想与亲密偏好 · Desires, fantasies & preferences':'互动挑战与彼此探索 · Dares & discovery'}
+function draw(){const arr=data[mode];if(!arr.length){$('question').textContent='题库为空，请先添加题目 / No questions available';return}let available=arr.map((_,i)=>i).filter(i=>!seen[mode].has(i));if(!available.length){seen[mode].clear();available=arr.map((_,i)=>i)}let i=available[Math.floor(Math.random()*available.length)];seen[mode].add(i);round++;$('question').replaceChildren();const zh=document.createElement('div');zh.className='zh';zh.textContent=arr[i].zh;const en=document.createElement('div');en.className='en';en.textContent=arr[i].en;$('question').append(zh,en);$('meta').textContent=`第 ${round} 轮 · ${mode==='truth'?'真心话 Truth':'大冒险 Dare'} · ${i+1}/${arr.length}`}
+const faces={1:[4],2:[0,8],3:[0,4,8],4:[0,2,6,8],5:[0,2,4,6,8],6:[0,2,3,5,6,8]};function face(n){$('die').replaceChildren(...Array.from({length:9},(_,i)=>{let s=document.createElement('span');s.className='pip'+(faces[n].includes(i)?'':' empty');return s}))}
+function roll(){if(rolling)return;rolling=true;$('die').classList.add('rolling');let ticks=0;const timer=setInterval(()=>{face(1+Math.floor(Math.random()*6));if(++ticks>=12){clearInterval(timer);const n=1+Math.floor(Math.random()*6);face(n);$('die').classList.remove('rolling');$('dieNum').textContent=n;$('dieLabel').textContent=n%2?'奇数 · 真心话 / Truth':'偶数 · 大冒险 / Dare';setMode(n%2?'truth':'dare');draw();rolling=false}},65)}
+function resetRps(){picks=[];$('rpsStatus').textContent=`${playerName(0)} 秘密出拳 / First player chooses secretly`;$('rpsResult').textContent='';$('revealBtn').disabled=true}
+function pick(n){if(picks.length===2)return;picks.push(n);$('rpsStatus').textContent=picks.length===1?`${playerName(0)} 已锁定，请交给 ${playerName(1)} / Pass to second player`:'双方已锁定，准备揭晓 / Both locked. Reveal!';$('revealBtn').disabled=picks.length!==2}
+function reveal(){if(picks.length!==2)return;const names=['✌️','✊','🖐️'],[a,b]=picks;let winner=a===b?'平局 / Tie':(a-b+3)%3===1?'A':'B';$('rpsResult').textContent=`A ${names[a]} VS B ${names[b]} · ${winner==='A'?'A 获胜，B 抽题 / B draws':winner==='B'?'B 获胜，A 抽题 / A draws':'平局，请重来 / Try again'}`;$('rpsStatus').textContent='本轮已揭晓 / Revealed';$('revealBtn').disabled=true;if(winner!=='平局 / Tie'){activePlayer=winner==='A'?1:0;renderPlayers();draw()}}
+function libraryMode(m){libMode=m;$('lt').classList.toggle('on',m==='truth');$('ld').classList.toggle('on',m==='dare');renderLibrary()}
+function node(tag,cls,txt){const el=document.createElement(tag);if(cls)el.className=cls;if(txt!==undefined)el.textContent=txt;return el}
+function renderLibrary(){const arr=draft[libMode],root=$('entries');root.replaceChildren();$('libraryCount').textContent=`${libMode==='truth'?'真心话 Truth':'大冒险 Dare'} · ${arr.length} 题`;arr.forEach((item,i)=>{const wrap=node('article','entry'),head=node('div','entry-head'),label=node('span','',`#${i+1}`),actions=node('div'),edit=node('button','mini','✎ 编辑 / Edit'),del=node('button','mini','× 删除 / Delete');edit.onclick=()=>toggleEdit(wrap,item,i);del.onclick=()=>{if(confirm('确定删除这道题吗？ / Delete this question?')){draft[libMode].splice(i,1);renderLibrary()}};actions.append(edit,del);head.append(label,actions);const z=node('p','zh',item.zh||'（未填写中文）'),e=node('p','en',item.en||'(English missing)');wrap.append(head,z,e);root.append(wrap)})}
+function toggleEdit(wrap,item,i){const prior=wrap.querySelector('.editor');if(prior){prior.remove();return}const form=node('div','editor'),zl=node('label','','中文题目 / Chinese'),zt=node('textarea'),el=node('label','','English question'),et=node('textarea'),save=node('button','primary','保存本题 / Save question');zt.value=item.zh;et.value=item.en;save.onclick=()=>{draft[libMode][i]={zh:zt.value.trim(),en:et.value.trim()};renderLibrary();notify('题目已编辑，点击一键更新到游戏 / Edited; apply to game')};form.append(zl,zt,el,et,save);wrap.append(form)}
+function addEntry(){draft[libMode].push({zh:'',en:''});renderLibrary();const last=$('entries').lastElementChild;last.scrollIntoView({behavior:'smooth',block:'center'});toggleEdit(last,draft[libMode].at(-1),draft[libMode].length-1)}
+function applyLibrary(){if(!valid(draft)){notify('题库格式有误 / Invalid library');return}data=clone(draft);localStorage.setItem('midnight-library-v3',JSON.stringify(data));seen={truth:new Set(),dare:new Set()};notify('✓ 已更新游戏题库 / Game updated!');page('game')}
+function exportLibrary(){const blob=new Blob([JSON.stringify(draft,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='midnight-tension-library.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+async function importLibrary(ev){const f=ev.target.files?.[0];if(!f)return;try{const obj=JSON.parse(await f.text());if(!valid(obj))throw Error('Invalid format');draft=clone(obj);renderLibrary();notify('已导入，请点击一键更新到游戏 / Imported; apply changes')}catch{notify('导入失败：格式不正确 / Invalid JSON format')}ev.target.value=''}
 
-    <div class="mode-note" id="modeNote">挖出那些平时不好意思说出口的欲望、幻想和偏好。</div>
+const playerKey='midnight-players-v1';
+function loadPlayers(){try{const x=JSON.parse(localStorage.getItem(playerKey));if(Array.isArray(x)&&x.length>=1&&x.every(p=>typeof p.name==='string'&&Number.isInteger(p.score)))return x.slice(0,20)}catch(e){}return [{name:'Player 1',score:0},{name:'Player 2',score:0}]}
+let players=loadPlayers(),activePlayer=0;
+function savePlayers(){localStorage.setItem(playerKey,JSON.stringify(players))}
+function playerName(i){return players[i]?.name.trim()||`Player ${i+1}`}
+function renderPlayers(){const root=$('playersGrid');root.replaceChildren();players.forEach((p,i)=>{const card=node('div','player-card'+(i===activePlayer?' active':''));const top=node('div','player-top');const name=node('input','player-name');name.value=p.name;name.setAttribute('aria-label',`Player ${i+1} name`);name.oninput=()=>{players[i].name=name.value;savePlayers();updateTurnNote()};const remove=node('button','remove','×');remove.title='移除玩家 / Remove player';remove.disabled=players.length<=1;remove.onclick=()=>removePlayer(i);top.append(name,remove);const scoreline=node('div','scoreline');const score=node('span','score',String(p.score));const actions=node('div','score-actions');const minus=node('button','','−1'),plus=node('button','','+1');minus.onclick=()=>changeScore(i,-1);plus.onclick=()=>changeScore(i,1);actions.append(minus,plus);scoreline.append(score,actions);const select=node('button','player-select',i===activePlayer?'✓ 当前玩家 / Current':'轮到我 / My turn');select.onclick=()=>{activePlayer=i;renderPlayers()};card.append(top,scoreline,select);root.append(card)});updateTurnNote()}
+function updateTurnNote(){$('turnNote').textContent=`🎯 当前挑战者 / Current player: ${playerName(activePlayer)}`}
+function changeScore(i,delta){players[i].score=Math.max(0,players[i].score+delta);savePlayers();renderPlayers()}
+function addPlayer(){if(players.length>=20){notify('最多20名玩家 / Maximum 20 players');return}players.push({name:`Player ${players.length+1}`,score:0});savePlayers();renderPlayers()}
+function removePlayer(i){if(players.length<=1)return;if(!confirm(`移除 ${playerName(i)}? / Remove player?`))return;players.splice(i,1);if(activePlayer>=players.length)activePlayer=players.length-1;else if(i<activePlayer)activePlayer--;savePlayers();renderPlayers()}
+function resetScores(){if(!confirm('确定清零所有积分？ / Reset all scores?'))return;players.forEach(p=>p.score=0);savePlayers();renderPlayers()}
+function completeChallenge(){changeScore(activePlayer,1);notify(`${playerName(activePlayer)} +1 ⭐`)}
 
-    <div class="prompt" id="prompt">准备好了吗？<br>摇骰子开始 👀</div>
-    <div class="meta" id="meta">第 0 题 · Level 1</div>
-
-    <div class="actions">
-      <button class="primary" onclick="roll()">🎲 摇骰子</button>
-      <button class="secondary" onclick="nextRandom()">✨ 随机抽题</button>
-    </div>
-
-    <section class="game">
-      <h2>或者——用剪刀石头布决定谁来抽？ ✂️🪨📄</h2>
-      <div class="game-buttons">
-        <button class="rps" onclick="rps('✌️','剪刀')">✌️ 剪刀</button>
-        <button class="rps" onclick="rps('✊','石头')">✊ 石头</button>
-        <button class="rps" onclick="rps('🖐️','布')">🖐️ 布</button>
-        <button class="dice" onclick="resetGame()">↻ 重新开始</button>
-      </div>
-      <div id="result"></div>
-    </section>
-
-    <p class="small">任何一方都可以说 Skip。真正的刺激来自双方都舒服的边界里。🫶</p>
-  </main>
-</div>
-
-<script>
-const truths = [
-"什么样的氛围最容易让你进入状态？是灯光、音乐、香味、眼神、距离感，还是语言？",
-"我做过什么小动作，会让你特别有感觉？有没有一些我自己都没意识到的瞬间？",
-"你更容易被视觉、声音、触碰还是语言撩到？为什么？",
-"有没有一种亲密接触，是你特别喜欢、但平时不太会主动要求的？",
-"你喜欢主动一点，还是享受对方主动？更喜欢掌控、被掌控，还是交换？",
-"你喜欢慢慢升温，还是突然变得很有火花？什么节奏最适合你？",
-"什么最能让你觉得自己被渴望：眼神、拥抱、亲吻、贴近、语言，还是主动靠近？",
-"如果把我们的亲密模式调高一点，你最想增加哪一种感觉？",
-"从舒服、亲密、刺激、视觉感来看，你最喜欢哪一种亲密姿势？为什么？",
-"你更喜欢面对面、侧身贴近，还是更有距离感的姿势？哪一种最有连接感？",
-"有没有一种姿势或方式，是你一直很好奇、但还没有真正尝试过的？",
-"亲密时你更喜欢一直保持眼神交流，还是偶尔避开眼神、享受一点羞耻感？",
-"有没有一个关于我的幻想，是你想过很多次但从来没告诉我的？",
-"如果今晚完全不用考虑现实、时间和地点，你最想和我拥有怎样的一次约会或亲密体验？",
-"有没有幻想过我们在一个完全不同的身份或场景里认识？",
-"如果让你设计一晚属于我们的成人约会，你会从哪里开始安排？",
-"什么类型的话最容易让你心跳加速：直接表达欲望、夸奖、说想念，还是带一点挑逗感？",
-"你喜欢听我主动告诉你“我想要你”，还是更喜欢让我通过行动暗示？",
-"有没有一句话，如果我在合适的时候对你说，你会立刻觉得特别有感觉？",
-"如果你可以诚实地告诉我一个“你一直想让我知道、但又有点不好意思说”的欲望，你会告诉我什么？"
-];
-
-const dares = [
-"盯着对方的眼睛30秒，不许笑也不许躲。",
-"靠近对方耳边，说一句你觉得最性感的夸奖。",
-"告诉对方：“我第一次觉得你很有吸引力的瞬间是……”",
-"让对方随机选一张你的照片，并解释为什么这张照片让你觉得自己有魅力。",
-"保持很近的距离，对方问你一个问题，你必须看着TA的眼睛回答。",
-"让对方选择一个你身上的位置，只能用语言描述为什么喜欢它。",
-"用一句话告诉对方：如果现在只能亲吻一个地方，你会选哪里。",
-"靠得很近，但两个人都不能主动碰对方1分钟。",
-"轮流说三个“我很喜欢你这样做”的瞬间。",
-"让对方用一句话描述：TA觉得你什么时候最有魅力。",
-"闭上眼睛，让对方靠近你，然后猜TA什么时候离你最近。",
-"让对方选择一种你们平时很少尝试的浪漫互动，并一起完成。",
-"对着对方耳边说一句：“如果今晚没有任何限制，我最想……”——可以自己决定说到哪里。",
-"轮流用三个词描述你眼里的对方，不可以使用“漂亮、帅、性感”。",
-"让对方设计下一次约会的“成人版主题”，你只能回答：yes / no / maybe。",
-"给对方一个10秒决定：现在你最想让我做的一件浪漫的事是什么？",
-"两个人面对面坐着，轮流说一句自己从来没有主动说出口的欲望。",
-"让对方从“甜、坏、霸道、温柔、神秘”中选一个角色，然后用这个风格和你聊天3分钟。",
-"给对方一句只允许今晚使用的昵称，并解释为什么选它。",
-"Final Dare：看着对方说：“如果你真的想知道我最想要什么，就问我。”然后由对方决定问什么。"
-];
-
-let mode='truth', count=0, last=-1;
-const promptEl=document.getElementById('prompt');
-const metaEl=document.getElementById('meta');
-const resultEl=document.getElementById('result');
-
-function setMode(m){
-  mode=m;
-  document.getElementById('truthTab').classList.toggle('active',m==='truth');
-  document.getElementById('dareTab').classList.toggle('active',m==='dare');
-  document.getElementById('modeNote').textContent=m==='truth'
-    ? '挖出那些平时不好意思说出口的欲望、幻想和偏好。'
-    : '别只说——用行动制造一点心跳。😈';
-  promptEl.innerHTML='准备好了吗？<br>摇骰子开始 👀';
-  metaEl.textContent='第 0 题 · Level 1';
-}
-
-function nextRandom(){
-  const arr=mode==='truth'?truths:dares;
-  let i=Math.floor(Math.random()*arr.length);
-  if(arr.length>1 && i===last) i=(i+1)%arr.length;
-  last=i; count++;
-  promptEl.textContent=arr[i];
-  const level=Math.min(4,Math.floor(i/5)+1);
-  metaEl.textContent=`第 ${count} 题 · Level ${level}`;
-  resultEl.textContent='';
-}
-
-function roll(){
-  const n=Math.floor(Math.random()*6)+1;
-  resultEl.textContent=`🎲 你摇到了 ${n}！`;
-  setTimeout(nextRandom,450);
-}
-
-function rps(icon,name){
-  const choices=[['✌️','剪刀'],['✊','石头'],['🖐️','布']];
-  const bot=choices[Math.floor(Math.random()*3)];
-  let outcome='平手';
-  if((name==='剪刀'&&bot[1]==='布')||(name==='石头'&&bot[1]==='剪刀')||(name==='布'&&bot[1]==='石头')) outcome='你赢了！你来抽 😈';
-  else if(name!==bot[1]) outcome='TA赢了！TA来抽 👀';
-  resultEl.textContent=`你 ${icon}  vs  系统 ${bot[0]} · ${outcome}`;
-  if(outcome.includes('你赢')) setTimeout(nextRandom,900);
-}
-
-function resetGame(){
-  count=0;last=-1;resultEl.textContent='';
-  promptEl.innerHTML='准备好了吗？<br>摇骰子开始 👀';
-  metaEl.textContent='第 0 题 · Level 1';
-}
-</script>
-</body>
-</html>
+updateEnglish();setMode('truth');face(5);resetRps();renderPlayers();
+</script></body></html>
